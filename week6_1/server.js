@@ -19,7 +19,7 @@ app.get('/add', (req, res) => {
   }
   
   // Calculate the sum
-  const sum = a + b;
+  const sum = a + b +1;
   
   // Send the result as plain text
   res.send(`The sum of ${a} and ${b} is: ${sum}`);
