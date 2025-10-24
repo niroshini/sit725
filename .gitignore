@@ -1,8 +1,9 @@
-# macOS system files
+# macOS system files/editor
 .DS_Store
 .AppleDouble
 .LSOverride
-
+Thumbs.db
+.vscode/
 
 # Thumbnails
 ._*
@@ -21,3 +22,14 @@
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment (safe even if unused)
+.env
+.env.*.local
