@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Get all food items</title>
+</head>
+<body>
+  <h1>Food Menu</h1>
+  <p>Click the button below to get all food items from the server:</p>
+  <button id="fetchFoodItemsBtn">Get Food Items</button>
+  <div id="foodItemsDisplay"></div>
+
+  <script>
+    const btn = document.getElementById('fetchFoodItemsBtn');
+    const out = document.getElementById('foodItemsDisplay');
+
+    function render(items){
+      out.innerHTML = '';
+      if (!Array.isArray(items) || items.length === 0){
+        out.textContent = 'No items';
+        return;
+      }
+      for (const it of items){
+        const p = document.createElement('p');
+  
+        const price =
+          typeof it.price === 'string'
+            ? it.price
+            : (it.price && it.price.$numberDecimal) || it.price || '';
+        p.textContent = `${it.name} - ${it.currency || 'AUD'} ${price}`;
+        out.appendChild(p);
+      }
+    }
+
+    btn.addEventListener('click', async () => {
+      out.textContent = 'Loading...';
+      try {
+        const res = await fetch('/api/food'); // correct endpoint
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const body = await res.json();        // { statusCode, data, message }
+        render(body.data);
+      } catch (err) {
+        console.error('Error fetching food items:', err);
+        out.textContent = 'Error fetching food items.';
+      }
+    });
+  </script>
+</body>
+</html>
