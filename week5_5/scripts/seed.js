@@ -5,17 +5,7 @@ mongoose.connect('mongodb://localhost:27017/foodDB', {
   useUnifiedTopology: true,
 });
 
-//const Book = require('../models/book.model');
 const foodItems = require('../models/foodModel');
-
-// const ProjectSchema = new mongoose.Schema({
-//   title: String,
-//   image: String,
-//   link: String,
-//   description: String,
-// });
-
-//const Project = mongoose.model('Project', ProjectSchema);
 
 const sampleData = [
   {
@@ -50,26 +40,12 @@ const sampleData = [
   }
 ];
 
-
-
-
-// Project.insertMany(sampleData)
-//   .then(() => {
-//     console.log("Sample data inserted");
-//     mongoose.connection.close();
-//   })
-//   .catch(err => console.error(err));
-
-
-// scripts/seed.js
-
-
 (async () => {
   try {
-    // 3) ensure unique on id (good practice)
+    // ensure unique on id (good practice)
     await foodItems.collection.createIndex({ id: 1 }, { unique: true });
 
-    // 4) clear and insert
+    // clear and insert
     await foodItems.deleteMany({});
     await foodItems.insertMany(sampleData);
 
