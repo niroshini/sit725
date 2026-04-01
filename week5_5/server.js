@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const PORT = 3004;
 
 // 1. Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/foodDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+// mongoose.connect('mongodb://localhost:27017/foodDB', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   });
   
+  mongoose.connect('mongodb://127.0.0.1:27017/foodDB');
+
   mongoose.connection.on('connected', () => {
     console.log('✅ Connected to MongoDB');
   });
